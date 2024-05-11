@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - left_food
+  - right_food
+  - left_dirty
+  - right_dirty
+  - KitchenDoor
+  - KitchenDoorAnimTrigger
   layers:
   - Default
   - TransparentFX
