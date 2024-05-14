@@ -6,6 +6,10 @@ public class PlateFollower : MonoBehaviour
 {
     [SerializeField] private float plateFollowSpeed;
 
+    public void Start()
+    {
+        plateFollowSpeed = 20f;
+    }
 
     public void FollowLastPlatePosition(Transform followedPlateTransform, bool isFollowStart)
     {
@@ -29,7 +33,7 @@ public class PlateFollower : MonoBehaviour
             //Mathf.Lerp(transform.position.z, followedPlate.position.z, followSpeed * Time.deltaTime));
 
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, followedPlateTransform.position.x, plateFollowSpeed * Time.deltaTime),
-            transform.position.y, followedPlateTransform.position.z);
+            transform.position.y,followedPlateTransform.position.z);
 
             // transform.rotation = followedPlate.rotation;
             transform.eulerAngles = followedPlateTransform.eulerAngles;

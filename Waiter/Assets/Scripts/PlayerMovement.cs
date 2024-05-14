@@ -33,10 +33,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rotationLerpSpeed = 1f;
-        forwardSpeed = 2f;
+        //forwardSpeed = 2f;
         maxRotationZAngle = -35f;
-        PlayerSpeed = 3f;
-        balanceChangeValue = 0.1f;
+       // PlayerSpeed = 3f;
+        balanceChangeValue = 0.01f;
     }
 
     void Update()

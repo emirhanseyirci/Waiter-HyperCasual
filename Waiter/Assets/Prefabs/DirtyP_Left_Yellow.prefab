@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4904854596490553513}
   m_Layer: 0
   m_Name: DirtyP_Left_Yellow
-  m_TagString: left_dirty
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2056982308490697698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 627350732830042158}
@@ -125,6 +125,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b76b6481746a314385af2f99adc38a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_dirty
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -177,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6328f6bf99864f84ca22badcc70db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateFollowSpeed: 0
+  plateFollowSpeed: 10
 --- !u!4 &627350732830042158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b76b6481746a314385af2f99adc38a8,

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7901094087068113316}
   m_Layer: 0
   m_Name: DirtyP_Left_Green
-  m_TagString: left_dirty
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 779668544548196896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7785223355595495787}
@@ -105,6 +105,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b76b6481746a314385af2f99adc38a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_dirty
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -143,8 +148,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.01, z: 0.02}
-  m_Center: {x: 0.0000000013969839, y: -0.0008861579, z: -0.0000000060535967}
+  m_Size: {x: 0.019076113, y: 0.0022393565, z: 0.02}
+  m_Center: {x: 0.0000000023283064, y: -0.00070138054, z: -0.0000000055879354}
 --- !u!114 &2755195402974263929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6328f6bf99864f84ca22badcc70db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateFollowSpeed: 0
+  plateFollowSpeed: 10
 --- !u!4 &7785223355595495787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b76b6481746a314385af2f99adc38a8,
