@@ -29,6 +29,16 @@ public class LeftObjectPooling : MonoBehaviour
 
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            RandomPool();
+
+        }
+    }
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -103,10 +113,10 @@ public class LeftObjectPooling : MonoBehaviour
         GameObject obj = pools[objectType].pooledObjects.Dequeue(); //queueun en başındaki obje sıradan çıkarılır.
         obj.SetActive(true); //görünür hale getirilir
         //pools[objectType].pooledObjects.Enqueue(obj); //queue sırasına geri eklenir arkadan. tekrar kullanabilmek için.
-        obj.transform.position = PlatePickUp.Instance.leftStackPosition; //toplanılan objenin pozisyonu leftstack pozisyonuna eşitlenir
+      //  obj.transform.position = PlatePickUp.Instance.leftStackPosition; //toplanılan objenin pozisyonu leftstack pozisyonuna eşitlenir
         PlatePickUp.Instance.leftPlates.Add(obj);
 
-        if (PlatePickUp.Instance.leftPlates.Count == 1) //left empty objecti listenin içindedir...
+        if (PlatePickUp.Instance.leftPlates.Count == 0) //left empty objecti listenin içindedir..(değil artık...!!!!!).
         {
             //dequeue_left_pos = new Vector3(obj.transform.position.x,
             //    PickUp.Instance.firstLeft_dirtyplatePos.y, obj.transform.position.z);
@@ -114,27 +124,29 @@ public class LeftObjectPooling : MonoBehaviour
 
 
             dequeuedLeftObjectPosition = new Vector3(obj.transform.position.x,
-                PlatePickUp.Instance.leftStackPosition.y, PlatePickUp.Instance.leftStackPosition.z);
-
-
-
+                PlatePickUp.Instance.leftStackPosition.y+1f, PlatePickUp.Instance.leftStackPosition.z);
             obj.gameObject.transform.position = dequeuedLeftObjectPosition;
             //listeden çıkıp setactive true olan objenin pozisyonu tuttuğumuz vector3 değişkenidir bu. bu noktada değiştirdiğimiz tek şey  yüksekliği
             //dequeue_left_pos = new Vector3(obj.transform.position.x,
             //    obj.transform.position.y + 2f, obj.transform.position.z);  //3.5f değeri objeler arasındaki boşluktur. buraya public bir değer verip oyun içinden kontrol edebilirsin
 
             dequeuedLeftObjectPosition = new Vector3(obj.transform.position.x,
-                obj.transform.position.y + 2f, PlatePickUp.Instance.leftStackPosition.z);
+                obj.transform.position.y + 0.03f, PlatePickUp.Instance.leftStackPosition.z);
 
             obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.thisobjt, true);
+
+            //obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.thisobjt, true);
+            Debug.Log("obj pooling:" + "  " + obj.transform.position);
+
         }
-        else if (PlatePickUp.Instance.leftPlates.Count > 1)
+        else if (PlatePickUp.Instance.leftPlates.Count >=1)
         {
             obj.gameObject.transform.position = dequeuedLeftObjectPosition;
-            dequeuedLeftObjectPosition = new Vector3(obj.transform.position.x, obj.transform.position.y + 3.5f,
+            dequeuedLeftObjectPosition = new Vector3(obj.transform.position.x, obj.transform.position.y + 0.03f,
                 obj.transform.position.z);
-            obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.leftPlates[PlatePickUp.Instance.leftPlateListIndexCounter].transform, true); //listenin veya stackin üstündeki en üstteki objenin transformu
+            obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.leftPlates[PlatePickUp.Instance.leftPlateListIndexCounter].gameObject.transform, true); //listenin veya stackin üstündeki en üstteki objenin transformu
             PlatePickUp.Instance.leftPlateListIndexCounter++;
+            Debug.Log("obj pooling:"+"  "+obj.transform.position);
         }
 
         KitchenDoor.Instance.IncreaseLeftStackedPlateCount();
@@ -142,15 +154,15 @@ public class LeftObjectPooling : MonoBehaviour
     }
 
 
-    public IEnumerator ObjectPoolingProcess()
-    {
-        // poolobjects listesinin eleman sayısı setactiveobjectcount'a eşit olana kadar döngüyü devam ettir
-        while (poolObjects_Left.Count != setActiveObjectCount)
-        {
-            RandomPool();
-            yield return new WaitForSeconds(0.5f);
+    //public IEnumerator ObjectPoolingProcess()
+    //{
+    //    // poolobjects listesinin eleman sayısı setactiveobjectcount'a eşit olana kadar döngüyü devam ettir
+    //    while (poolObjects_Left.Count != setActiveObjectCount)
+    //    {
+    //        RandomPool();
+    //        yield return new WaitForSeconds(0.5f);
 
-        }
-    }
+    //    }
+    //}
 
 }

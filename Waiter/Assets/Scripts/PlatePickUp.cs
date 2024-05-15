@@ -12,7 +12,7 @@ public class PlatePickUp : MonoBehaviour
 
 
 
-    public List<GameObject> leftPlates; //stacklenen platelerin listesi
+     public List<GameObject> leftPlates; //stacklenen platelerin listesi
     public List<GameObject> rightPlates; //stacklenen platelerin listesi
 
     public int leftPlateListIndexCounter = 0;
@@ -22,7 +22,7 @@ public class PlatePickUp : MonoBehaviour
     public Transform firstRightPlateTransform;
     public Transform thisobjt;
     public static PlatePickUp Instance;
-
+    public Vector3 objPoolTransform;
 
 
     private void Awake()
@@ -38,13 +38,17 @@ public class PlatePickUp : MonoBehaviour
 
     private void Start()
     {
-        leftStackPosition = firstLeftPlateTransform.position;
-        rightStackPosition = firstRightPlateTransform.position;
-
-        Debug.Log(leftStackPosition);
-        Debug.Log(rightStackPosition);
-
-
+        //leftStackPosition = firstLeftPlateTransform.localPosition;
+      //  rightStackPosition = firstRightPlateTransform.localPosition;
+        leftStackPosition = new Vector3(-0.05f, 0.1f, 0f);
+        //  leftStackPosition = firstLeftPlateTransform.localPosition;
+      
+        firstLeftPlateTransform.position = leftStackPosition;
+        rightStackPosition=new Vector3(0.05f,0.1f,0f);
+        firstRightPlateTransform.position = rightStackPosition;
+        Debug.Log(thisobjt.position);
+        objPoolTransform = new Vector3(thisobjt.transform.position.x,thisobjt.transform.position.y, thisobjt.transform.position.z);
+        
     }
 
 
@@ -58,57 +62,55 @@ public class PlatePickUp : MonoBehaviour
     {
         if (other.CompareTag("left_dirty"))
         {
+
             if (!leftPlates.Contains(other.gameObject))
             {
-                leftPlates.Add(other.gameObject);
-                // Diğer işlemler...
-                //leftPlates.Add(other.gameObject);
-                KitchenDoor.Instance.IncreaseLeftStackedPlateCount();
-                if (leftPlates.Count == 1)
+                leftPlates.Add(other.gameObject); //temas ettiğimiz objeyi listeye ekledik
+                if (leftPlates.Count == 1) //listede eleman yoksa
                 {
-                    currentLeftPlatePosition = new Vector3(other.transform.position.x, leftStackPosition.y, other.transform.position.z); //toplanan objenin pozisyonun yüksekliğini ilk objenin yüksekliğine eşitliyoruz
+                    currentLeftPlatePosition = new Vector3(other.transform.position.x, leftStackPosition.y, other.transform.position.z); //tmes ettiğimiz 
                     other.gameObject.transform.position = currentLeftPlatePosition; //burada bunu atıyoruz
-                    currentLeftPlatePosition = new Vector3(other.transform.position.x, transform.position.y + 0.05f, other.transform.position.z); //daha sonrasında o aradaki boşluğu veriyoruz
-                    other.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(transform, true);
+                    currentLeftPlatePosition = new Vector3(other.transform.position.x, other.transform.position.y + 0.01f, other.transform.position.z); //bir osnraki objenin yüksekliğini verip
+                    other.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(firstLeftPlateTransform, true);
+                    //leftPlateListIndexCounter++;
                 }
                 else if (leftPlates.Count > 1)
                 {
                     other.gameObject.transform.position = currentLeftPlatePosition;
-                    currentLeftPlatePosition = new Vector3(other.transform.position.x, other.gameObject.transform.position.y + 0.05f, other.transform.position.z);
+                    currentLeftPlatePosition = new Vector3(other.transform.position.x, other.gameObject.transform.position.y + 0.01f, other.transform.position.z);
                     other.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(leftPlates[leftPlateListIndexCounter].transform, true);
                     leftPlateListIndexCounter++;
+
                 }
-            }
+
+            }                       
         }
         else if (other.CompareTag("right_dirty"))
         {
             if (!rightPlates.Contains(other.gameObject))
             {
                 rightPlates.Add(other.gameObject);
-                // Diğer işlemler...
-                //rightPlates.Add(other.gameObject);
-                KitchenDoor.Instance.IncreaseRightStackedPlateCount();
                 if (rightPlates.Count == 1)
                 {
                     currentRightPlatePosition = new Vector3(other.transform.position.x, rightStackPosition.y, other.transform.position.z);
-                    other.gameObject.transform.position = currentRightPlatePosition; ;
-                    currentRightPlatePosition = new Vector3(other.transform.position.x, transform.position.y + 0.05f, other.transform.position.z);
-                    other.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(transform, true);
+                    other.gameObject.transform.position = currentRightPlatePosition;
+                    currentRightPlatePosition = new Vector3(other.transform.position.x, other.transform.position.y + 0.01f, other.transform.position.z);
+                    other.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(firstRightPlateTransform, true);
                 }
-                else if (rightPlates.Count > 1)
+                else if (rightPlates.Count>1)
                 {
-                    other.gameObject.transform.position = currentRightPlatePosition; ;
-                    currentRightPlatePosition = new Vector3(other.transform.position.x, other.gameObject.transform.position.y + 0.05f, other.transform.position.z);
+                    other.gameObject.transform.position = currentRightPlatePosition;
+                    currentRightPlatePosition = new Vector3(other.transform.position.x, other.gameObject.transform.position.y + 0.01f, other.transform.position.z);
                     other.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(rightPlates[rightPlateListIndexCounter].transform, true);
                     rightPlateListIndexCounter++;
                 }
+
             }
-
-
-
-
-
         }
+        
+
+               
+
     }
 
 
@@ -123,42 +125,53 @@ public class PlatePickUp : MonoBehaviour
         {
             ServeToLeftCustomer();
         }
-        else
+        else if(Input.GetKeyDown(KeyCode.X))
         {
-
+            KitchenDirtyPlates_Put();
         }
+
+        Debug.Log(thisobjt.position);
 
     }
 
     public void KitchenDirtyPlates_Put()
     {
-        for (int i = leftPlates.Count - 1; i > 0; i--)
+        for (int i = leftPlates.Count-1; i >= 0; i--)
         {
             GameObject willWash_Left = leftPlates[i];
             Destroy(willWash_Left);
             leftPlates.RemoveAt(i);
         }
 
-        for (int i = rightPlates.Count - 1; i > 0; i--)
+        for (int j = rightPlates.Count-1; j >= 0; j--)
         {
-            GameObject willWash_right = rightPlates[i];
+            GameObject willWash_right = rightPlates[j];
             Destroy(willWash_right);
-            rightPlates.RemoveAt(i);
+            rightPlates.RemoveAt(j);
         }
 
         leftPlateListIndexCounter = 0;
         rightPlateListIndexCounter = 0;
-        KitchenDoor.Instance.ResetPlateCounts();
-        PlayerMovement.Instance.ResetBalanceValue();
+        //KitchenDoor.Instance.ResetPlateCounts();
+       // PlayerMovement.Instance.ResetBalanceValue();
     }
 
 
     public void ServeToLeftCustomer()
     {
-        Destroy(leftPlates[leftPlates.Count - 1].gameObject);
-        leftPlates.RemoveAt(leftPlates.Count - 1);
-        leftPlateListIndexCounter--;
-        KitchenDoor.Instance.DecreaseLeftStackedPlateCount();
+        
+            Destroy(leftPlates[leftPlates.Count - 1].gameObject);
+            leftPlates.RemoveAt(leftPlates.Count - 1);
+            leftPlateListIndexCounter--;
+
+        if (leftPlateListIndexCounter<0)
+        {
+            leftPlateListIndexCounter = 0;
+        }
+            
+            //KitchenDoor.Instance.DecreaseLeftStackedPlateCount();
+        
+
     }
 
     public void ServeToRightCustomer()
@@ -166,7 +179,14 @@ public class PlatePickUp : MonoBehaviour
         Destroy(rightPlates[rightPlates.Count - 1].gameObject);
         rightPlates.RemoveAt(rightPlates.Count - 1);
         rightPlateListIndexCounter--;
-        KitchenDoor.Instance.DecreaseRightStackedPlateCount();
+
+        if (rightPlateListIndexCounter<0)
+        {
+            rightPlateListIndexCounter = 0;
+        }
+
+
+      //  KitchenDoor.Instance.DecreaseRightStackedPlateCount();
     }
 
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +17,8 @@ public class scaleTest : MonoBehaviour
     public Transform thisobject;
     public static scaleTest Instance;
 
+    public GameObject leftplate;
+
 
     public int leftPlateListIndexCounter = 0;
     public int rightPlateListIndexCounter = 0;
@@ -33,41 +35,80 @@ public class scaleTest : MonoBehaviour
 
     private void Start()
     {
-        leftStackPosition = new Vector3(0f, 0.1f, 0);
-        rightStackPosition = new Vector3(0f, 0.1f, 0f);
+        leftStackPosition=new Vector3(0,2,0);
+        rightStackPosition = new Vector3(0, 2, 0);
     }
 
 
+    //private void plateAdd()
+    //{ //belirlediğimiz noktaya attığımız prefabuı oluşturacak
+    //    Instantiate(leftplate, leftStackPosition, Quaternion.identity);
+    //}
 
-    private void OnTriggerEnter(Collider other)
+
+    private void plateAdd2()
     {
 
-        
-        if (other.CompareTag("left_dirty"))
+        //KitchenDoor.Instance.IncreaseLeftStackedPlateCount();
+        if (leftPlates.Count == 0)
         {
-            leftPlates.Add(other.gameObject);
+            Instantiate(leftplate, leftStackPosition, Quaternion.identity);
+            leftPlates.Add(leftplate.gameObject);
+            Debug.Log("çalıştı");
+           // leftPlateListIndexCounter++;
+        }
+        else if (leftPlates.Count >= 1)
+        {
+            currentLeftPlatePosition = new Vector3(leftStackPosition.x,
+                leftPlates[leftPlates.Count-1].transform.position.y + 0.5f, leftStackPosition.z);
+            Instantiate(leftplate,currentLeftPlatePosition, Quaternion.identity);
+            leftPlates.Add(leftplate.gameObject);
+           // leftPlateListIndexCounter++;
+            Debug.Log("çalıştı");
 
-            if (leftPlates.Count==1)
-            {
-                currentLeftPlatePosition = new Vector3(leftStackPosition.x, leftStackPosition.y, leftStackPosition.z); //
-                other.gameObject.transform.position = currentLeftPlatePosition;
-                currentLeftPlatePosition = new Vector3(other.transform.position.x, transform.position.y + 0.005f, other.transform.position.z);
-            }
-            else if (leftPlates.Count>1)
-            {
-                other.gameObject.transform.position = currentLeftPlatePosition;
-                currentLeftPlatePosition = new Vector3(
-                    leftPlates[leftPlateListIndexCounter].gameObject.transform.position.y + 0.05f,
-                    leftPlates[leftPlateListIndexCounter].gameObject.transform.position.z);
-
-               // currentLeftPlatePosition = new Vector3(other.transform.position.x, other.gameObject.transform.position.y + 0.005f, other.transform.position.z);
-                leftPlateListIndexCounter++;
-            }
-
-
-           
         }
     }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            plateAdd2();
+        }
+    }
+
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+
+
+    //    if (other.CompareTag("left_dirty"))
+    //    {
+    //        leftPlates.Add(other.gameObject);
+
+    //        if (leftPlates.Count==1)
+    //        {
+    //            currentLeftPlatePosition = new Vector3(leftStackPosition.x, leftStackPosition.y, leftStackPosition.z); //
+    //            other.gameObject.transform.position = currentLeftPlatePosition;
+    //            currentLeftPlatePosition = new Vector3(other.transform.position.x, transform.position.y + 0.005f, other.transform.position.z);
+    //        }
+    //        else if (leftPlates.Count>1)
+    //        {
+    //            other.gameObject.transform.position = currentLeftPlatePosition;
+    //            currentLeftPlatePosition = new Vector3(
+    //                leftPlates[leftPlateListIndexCounter].gameObject.transform.position.y + 0.05f,
+    //                leftPlates[leftPlateListIndexCounter].gameObject.transform.position.z);
+
+    //           // currentLeftPlatePosition = new Vector3(other.transform.position.x, other.gameObject.transform.position.y + 0.005f, other.transform.position.z);
+    //            leftPlateListIndexCounter++;
+    //        }
+
+
+
+    //    }
+    //}
 
 
 

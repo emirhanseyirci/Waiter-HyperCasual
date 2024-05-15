@@ -130,15 +130,17 @@ public class RightObjectPooling : MonoBehaviour
                 obj.transform.position.y + 2f, PlatePickUp.Instance.rightStackPosition.z);
 
 
+            //obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.thisobjt, true);
             obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.thisobjt, true);
+
         }
         else if (PlatePickUp.Instance.rightPlates.Count > 1)
         {
             obj.gameObject.transform.position = dequeuedRightObjectPosition;
             dequeuedRightObjectPosition = new Vector3(obj.transform.position.x, obj.transform.position.y + 3.5f,
                 obj.transform.position.z);
-            obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.rightPlates[PlatePickUp.Instance.rightPlateListIndexCounter].transform, true); //listenin veya stackin üstündeki en üstteki objenin transformu
-            PlatePickUp.Instance.rightPlateListIndexCounter++;
+            //obj.gameObject.GetComponent<PlateFollower>().FollowLastPlatePosition(PlatePickUp.Instance.rightPlates[PlatePickUp.Instance.rightPlateListIndexCounter].transform, true); //listenin veya stackin üstündeki en üstteki objenin transformu
+            //PlatePickUp.Instance.rightPlateListIndexCounter++;
         }
 
         KitchenDoor.Instance.IncreaseRightStackedPlateCount();

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5958065715024891918}
+  - component: {fileID: 8876870680389013019}
   m_Layer: 0
   m_Name: Pizza_Left
   m_TagString: left_food
@@ -30,8 +31,21 @@ Transform:
   m_Children:
   - {fileID: 4943978731942896011}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8876870680389013019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956370097882403312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6328f6bf99864f84ca22badcc70db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plateFollowSpeed: 10
 --- !u!1001 &4834107372906972768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47,6 +61,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b3298012b039da429ee0556182640c2,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4b3298012b039da429ee0556182640c2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4b3298012b039da429ee0556182640c2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4b3298012b039da429ee0556182640c2,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -58,7 +87,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4b3298012b039da429ee0556182640c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.107
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b3298012b039da429ee0556182640c2,
         type: 3}

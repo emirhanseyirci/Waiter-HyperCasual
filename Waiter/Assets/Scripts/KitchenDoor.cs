@@ -76,8 +76,8 @@ public class KitchenDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            LeftObjectPooling.Instance.StartCoroutine(LeftObjectPooling.Instance.ObjectPoolingProcess());
-            RightObjectPooling.Instance.StartCoroutine(RightObjectPooling.Instance.ObjectPoolingProcess());
+            //LeftObjectPooling.Instance.StartCoroutine(LeftObjectPooling.Instance.ObjectPoolingProcess());
+            //RightObjectPooling.Instance.StartCoroutine(RightObjectPooling.Instance.ObjectPoolingProcess());
            // KitchenDoorAnimState.Instance.triggerSet_close();
 
         }

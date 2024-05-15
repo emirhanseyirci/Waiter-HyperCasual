@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class PlateFollower : MonoBehaviour
 {
+
+
     [SerializeField] private float plateFollowSpeed;
+
+
 
     public void Start()
     {
         plateFollowSpeed = 20f;
     }
 
+
+
     public void FollowLastPlatePosition(Transform followedPlateTransform, bool isFollowStart)
     {
         StartCoroutine(StartFollowingLastPlatePosition(followedPlateTransform, isFollowStart));
     }
+
+
 
 
     IEnumerator StartFollowingLastPlatePosition(Transform followedPlateTransform, bool isFollowStart)

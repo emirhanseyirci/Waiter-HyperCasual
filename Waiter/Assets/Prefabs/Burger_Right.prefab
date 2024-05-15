@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2454795881173686790}
+  - component: {fileID: -552884716591503594}
   m_Layer: 0
   m_Name: Burger_Right
   m_TagString: right_food
@@ -30,8 +31,21 @@ Transform:
   m_Children:
   - {fileID: 1514765684803805221}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-552884716591503594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6959686832614512683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa6328f6bf99864f84ca22badcc70db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plateFollowSpeed: 10
 --- !u!1001 &1337355922016815054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44,6 +58,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 297f84ab6734186419b9cb735bc1e3d5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 297f84ab6734186419b9cb735bc1e3d5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 297f84ab6734186419b9cb735bc1e3d5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 297f84ab6734186419b9cb735bc1e3d5,
         type: 3}
