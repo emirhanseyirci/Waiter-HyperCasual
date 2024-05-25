@@ -62,9 +62,11 @@ public class pltfllowertest : MonoBehaviour
 
         while (stackStart)
         {
-            transform.position = stackTransform.position;
-            transform.eulerAngles = stackTransform.eulerAngles;
+            yield return new WaitForEndOfFrame();
 
+           // transform.position = stackTransform.position;
+            transform.position=new Vector3(stackTransform.position.x,stackTransform.position.y,stackTransform.position.z);
+            transform.eulerAngles = stackTransform.eulerAngles;
         }
 
 
@@ -98,8 +100,6 @@ public class pltfllowertest : MonoBehaviour
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, lastcubetrans.position.x, cubeFollowSpeed * Time.deltaTime),
               transform.position.y, lastcubetrans.position.z);
             transform.eulerAngles = lastcubetrans.eulerAngles;
-
-
         }
 
 

@@ -11,6 +11,8 @@ TagManager:
   - KitchenDoor
   - KitchenDoorAnimTrigger
   - plateTest
+  - customerleft
+  - mealStack
   layers:
   - Default
   - TransparentFX

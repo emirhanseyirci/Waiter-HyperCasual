@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ public class KitchenDoorAnimState : MonoBehaviour
 
     }
 
-    public void TriggerSetClose()
+    public void TriggerSetClose() //object pooling process bitince veya leftstackpos setactivefalse olduğunda kapat
     {
         kitchenDoorAnimator.SetTrigger("TrClose");
     }
@@ -36,9 +36,11 @@ public class KitchenDoorAnimState : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-           // triggerSet_open();
+            TriggerSetOpen();
         }
     }
+
+    
 
 
 

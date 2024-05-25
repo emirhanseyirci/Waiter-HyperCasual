@@ -17,6 +17,7 @@ public class PlateFollower : MonoBehaviour
 
 
 
+
     public void FollowLastPlatePosition(Transform followedPlateTransform, bool isFollowStart)
     {
         StartCoroutine(StartFollowingLastPlatePosition(followedPlateTransform, isFollowStart));
